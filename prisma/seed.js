@@ -17,19 +17,40 @@ async function seed() {
 
     console.log('Customer created', createdCustomerAndContact);
 
-    const createdMovieAndScreenings = await prisma.movie.create({
+    const createdMovie = await prisma.movie.create({
         data: {
             title: 'Getting All Achievements in 3 hours - Welcome to the game 2 [World Record]',
             runtimeMins: 187,
-            Screenings: {
-                create: {
-                    startsAt: '2020-02-29T19:20:30.451Z'
+        }
+    })
+
+    console.log('Movie created', createdMovie);
+
+    const createdScreen = await prisma.screen.create({
+        data: {
+            number: 1
+        }
+    })
+
+    console.log('Screen created', createdScreen);
+
+    const createdScreening = await prisma.screening.create({
+        data: {
+            startsAt: '2020-02-29T19:20:30.451Z',
+            movie: {
+                connect: {
+                    id: createdMovie.id
+                }
+            },
+            screen: {
+                connect: {
+                    id: createdScreen.id
                 }
             }
         }
     })
 
-    console.log('Movie created', createdMovieAndScreenings);
+    console.log("Screening created", createdScreening)
 
     // Add your code here
     /*const createdContact = await prisma.contact.create({
@@ -39,15 +60,9 @@ async function seed() {
         }
     })
 
-    console.log('Contact created', createdContact);
+    console.log('Contact created', createdContact);*/
 
-    const createdScreening = await prisma.screening.create({
-        data: {
-            startsAt: '2020-02-29T19:20:30.451Z'
-        }
-    })
-
-    console.log("Screening created", createdScreening)*/
+    
 
     // Don't edit any of the code below this line
     process.exit(0);
