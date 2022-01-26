@@ -27,6 +27,23 @@ async function seed() {
 
     console.log('Contact created', createdContact);*/
 
+    const createdMovie = await prisma.movie.create({
+        data: {
+            title: 'Getting All Achievements in 3 hours - Welcome to the game 2 [World Record]',
+            runtimeMins: 187
+        }
+    })
+
+    console.log('Movie created', createdMovie);
+
+    const createdScreening = await prisma.screening.create({
+        data: {
+            startsAt: '2020-02-29T19:20:30.451Z'
+        }
+    })
+
+    console.log("Screening created", createdScreening)
+
     // Don't edit any of the code below this line
     process.exit(0);
 }
