@@ -2,23 +2,30 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function seed() {
-    const createdCustomer = await prisma.customer.create({
+    const createdCustomerAndContact = await prisma.customer.create({
         data: {
-            name: 'Alice'
+            name: 'Alice',
+            contact: {
+                create:
+                {
+                    phone: '+44 65656 656565',
+                    email: 'havethebestgoats@gmail.com'
+                }
+            }
         }
     });
 
-    console.log('Customer created', createdCustomer);
+    console.log('Customer created', createdCustomerAndContact);
 
     // Add your code here
-    const createdContact = await prisma.contact.create({
+    /*const createdContact = await prisma.contact.create({
         data: {
             phone: '+44 65656 656565',
             email: 'havethebestgoats@gmail.com'
         }
     })
 
-    console.log('Contact created', createdContact);
+    console.log('Contact created', createdContact);*/
 
     // Don't edit any of the code below this line
     process.exit(0);
