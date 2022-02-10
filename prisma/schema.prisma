@@ -49,11 +49,11 @@ model Screening {
 }
 
 model Screen {
-  id        Int      @id @default(autoincrement())
-  number    Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  screenings  Screening[]
+  id         Int      @id @default(autoincrement())
+  number     Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  screenings Screening[]
 }
 
 model Ticket {
